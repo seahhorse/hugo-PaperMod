@@ -1,0 +1,22 @@
+<style>
+.image-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+}
+</style>
+
+<div class="image-grid" style="grid-template-columns: repeat({{ .Get "columns" }}, 1fr);">
+    {{ $srcs := split (.Get "srcs") "|" }}
+    {{ $caps := split (.Get "caps") "|" }}
+    {{ range $index, $src := $srcs }}
+    <figure>
+        <div><img src="{{ $src }}" alt="{{ $src }}"></div>
+        <figcaption>{{ index $caps $index }}</figcaption>
+    </figure>
+    {{ end }}
+</div>
